@@ -7,7 +7,7 @@ Não poderia fazer um restore porque seriam somente algumas tabelas e que para d
 Desta forma, criar algumas funções e um script para ler tabelas que atendessem determinados critérios de nome: config, configuração, configurações e suas variações, apagasse os dados da tabela destino e inserisse os dados a partir da origem.
 O código ficou muito rápido e pode ser facilmente adaptado para ler outras tabelas
 
-```
+````
 /* 
 Copia dados de "FaculdadeOriginal" para "Faculdade"
 facilitando o trabalho de inserção dos dados
