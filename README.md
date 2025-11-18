@@ -7,7 +7,7 @@ Não poderia fazer um restore porque seriam somente algumas tabelas e que para d
 Desta forma, criar algumas funções e um script para ler tabelas que atendessem determinados critérios de nome: config, configuração, configurações e suas variações, apagasse os dados da tabela destino e inserisse os dados a partir da origem.
 O código ficou muito rápido e pode ser facilmente adaptado para ler outras tabelas
 
-````
+```SQL
 /* 
 Copia dados de "FaculdadeOriginal" para "Faculdade"
 facilitando o trabalho de inserção dos dados
@@ -115,13 +115,6 @@ END
 CLOSE cursor_tabelas
 DEALLOCATE cursor_tabelas
 
-TRUNCATE TABLE Faculdade.dbo.ConfiguracaoIntranetDocente; INSERT INTO Faculdade.dbo.ConfiguracaoIntranetDocente SELECT * FROM faculdadeOriginal.dbo.ConfiguracaoIntranetDocente
-TRUNCATE TABLE Faculdade.dbo.ConfiguracaoMatriculaBoletoGratuito; INSERT INTO Faculdade.dbo.ConfiguracaoMatriculaBoletoGratuito SELECT * FROM faculdadeOriginal.dbo.ConfiguracaoMatriculaBoletoGratuito
-TRUNCATE TABLE Faculdade.dbo.ConfiguracaoPeriodoRematricula_Datas; INSERT INTO Faculdade.dbo.ConfiguracaoPeriodoRematricula_Datas SELECT * FROM faculdadeOriginal.dbo.ConfiguracaoPeriodoRematricula_Datas
-TRUNCATE TABLE Faculdade.dbo.ConfiguracoesGerais; INSERT INTO Faculdade.dbo.ConfiguracoesGerais SELECT * FROM faculdadeOriginal.dbo.ConfiguracoesGerais
-TRUNCATE TABLE Faculdade.dbo.ConfiguracoesGeraisAcesso; INSERT INTO Faculdade.dbo.ConfiguracoesGeraisAcesso SELECT * FROM faculdadeOriginal.dbo.ConfiguracoesGeraisAcesso
-TRUNCATE TABLE Faculdade.dbo.ConfiguracaoIntranetAcademica; INSERT INTO Faculdade.dbo.ConfiguracaoIntranetAcademica SELECT * FROM faculdadeOriginal.dbo.ConfiguracaoIntranetAcademica
- 
 SET IDENTITY_INSERT IndiceFinanceiro ON
 DELETE FROM Faculdade.dbo.IndiceFinanceiro; 
 INSERT INTO Faculdade.dbo.IndiceFinanceiro (idIndiceFinanceiro,descricao)
@@ -168,33 +161,3 @@ END
 
 CLOSE cursor_tabelas
 DEALLOCATE cursor_tabelas
-
--- Última configuração que não pode ser importada
--- tem que ser inserida
-INSERT INTO ConfiguracoesGerais (
-    PermitirControleAcessoPorCurso, 
-    DadosCabecalhoRelatorio, 
-    NumeroTentativasParaBloqueio, 
-    TempoDeEsperaParaVerificacao, 
-    QuantidadeMinimaCaracteresSenha, 
-    HtmlAreaLivre, 
-    IdConfiguracoesGerais, 
-    CaminhoDaPastaLogomarca, 
-    NomeDaImagemDaLogomarca, 
-    AlturaDaLogomarca, 
-    LarguraDaLogomarca, 
-    EnabledMFA
-) VALUES (
-    0, 
-    'Universidade Exemplo  CNPJ: 18.472.078/0001-50  FAC, 123 - Cidade Jardim, Crato - CE, 60515-000', 
-    0, 
-    0, 
-    0, 
-    NULL, 
-    1, 
-    '/logo_instituicao/', 
-    'logomarca.png', 
-    NULL, 
-    NULL, 
-    0
-);
